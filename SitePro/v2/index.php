@@ -60,10 +60,11 @@ require_once('template_header.php');
       <p>
         <a class="source-link" href="" target="_blank"></a>
         <a class="yt-link" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        Découvrez notre équipe de développeurs et de designers qui travaillent pour vous.
       </p>
     </div>
     <div class="article-title-section article-section">
-      <h2>Recreation From Scratch</h2>
+      <h2>Accueil</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
     <div class="article-nav-section article-section">
@@ -78,10 +79,12 @@ require_once('template_header.php');
   <article data-index="1" data-status="inactive">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
-      <p>A place where books hang out waiting to be grabbed. But don't be too grabby now, ya hear.</p>
+      <?php 
+        require_once('template_articles.php');
+      ?>
     </div>
     <div class="article-title-section article-section">
-        <h2>Wicked Cool Library Shelves</h2>
+        <h2>Développement d'applications mobile</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
     <div class="article-nav-section article-section">
@@ -96,10 +99,12 @@ require_once('template_header.php');
   <article data-index="2" data-status="inactive">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
-      <p>The neatest lighthouse you ever saw. Ehh, actually it's kind of messy. But that's why the pic is of the outside.</p>
+      <p>
+        Nous vous accompagnons dans la réalisation de vos projets et vous proposons des solutions adaptées à vos besoins 100% personnalisées et sécurisées.
+      </p>
     </div>
     <div class="article-title-section article-section">
-      <h2>Neato Toledo Lighthouse</h2>
+      <h2>Sécurité garantie</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
     <div class="article-nav-section article-section">
@@ -115,11 +120,11 @@ require_once('template_header.php');
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <p>
-        The blobiest of blobs nestled deep in the heart of outer space. Well, technically the universe is both infinite and homogeneous so there isn't really a heart, per se.
+        Plongez dans l'univers de la technologie et découvrez les dernières tendances du marché grâce à notre connexion avec les plus grands acteurs du secteur.
       </p>
     </div>
     <div class="article-title-section article-section">
-      <h2>Super Space Blob</h2>
+      <h2>Un réseau global</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
     <div class="article-nav-section article-section">
