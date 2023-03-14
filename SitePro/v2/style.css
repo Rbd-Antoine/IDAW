@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, a, p, span {
+h1, h2, h3, a, p,  span {
   font-family: "Rubik", sans-serif;
   font-weight: 400;
   color: rgb(60, 58, 180);
@@ -46,6 +46,7 @@ nav .nav-section {
   border-left: 1px solid var(--border-color);
   align-items: center;
   justify-content: center;
+  
 }
 
 #nav-mobile-section {
@@ -91,10 +92,19 @@ nav .nav-section {
 #nav-logo-section {
   flex-basis: calc(100% / 3);
   justify-content: flex-start;
+  
 }
 
 #nav-logo-section > a > i {
   font-size: 2.5rem;
+}
+#nom-du-site{
+  font-family: "Rubik", sans-serif;
+  color: rgb(202 204 255 / 58%);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  text-decoration: none;
 }
 
 #nav-link-section {
@@ -161,7 +171,6 @@ main > article > .article-description-section,
 main > article > .article-nav-section {
   border-left: 1px solid var(--border-color);
 }
-
 main > article > .article-title-section,
 main > article > .article-nav-section {
   border-top: 1px solid var(--border-color);
@@ -458,7 +467,7 @@ main > article .yt-link > i {
 }
 /* Stylez le bouton de connexion*/
 .form-container .btn {
-  background-color: #5f80ac;
+  background-color: hwb(214 37% 33%);
   color: rgb(6, 11, 25);
   padding: 12px 20px;
   border: none;
@@ -477,3 +486,4 @@ main > article .yt-link > i {
 .open-button:hover {
   opacity: 1;
 }
+

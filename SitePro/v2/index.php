@@ -7,12 +7,16 @@ require_once('template_header.php');
     <a href="#">
       <i class="fa-solid fa-dumpster-fire"></i>
     </a>
+    <div id="nom-du-site" class="nom-site">
+      <a>
+        E-NEBULA 
+      </a>
+    </div>
   </div>
   <div id="nav-mobile-section">
-    <div id="nav-link-section" class="nav-section">
-      <a href="about.php">ABOUT</a>
-      <a href="#">WORK</a>
-    </div>
+    <?php
+      require_once('template_menu.php');
+    ?>
     <div id="nav-social-section" class="nav-section">
       <a href="#">
         <i class="fa-brands fa-twitter"></i>
