@@ -6,7 +6,7 @@ require_once('template_header.php');
 require_once('template_menu.php');
 ?>
 <main>
-<article data-index="3" data-status="inactive">    
+<article data-index="3" data-status="active">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <p>
@@ -21,3 +21,4 @@ require_once('template_menu.php');
 </main>
 </body>
 </html>
+

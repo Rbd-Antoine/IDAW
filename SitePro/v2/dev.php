@@ -7,7 +7,7 @@ require_once('template_menu.php');
 ?>
 <main>
 
-<article data-index="1" data-status="inactive">    
+<article data-index="1">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <?php 

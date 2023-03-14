@@ -1,11 +1,11 @@
 <nav data-toggled="false" data-transitionable="false">
   <div id="nav-logo-section" class="nav-section">
-    <a href="#">
+    <a href="index.php">
       <i class="fa-solid fa-dumpster-fire"></i>
     </a>
     <div id="nom-du-site" class="nom-site">
       <a>
-        E-NEBULA 
+        NEBULA 
       </a>
     </div>
   </div>

@@ -1,10 +1,13 @@
 <?php
 require_once('template_header.php');
 ?>
+<body>
+
 <?php
 require_once('template_menu.php');
 ?>
-<article data-index="2" data-status="inactive">    
+<main>
+<article data-index="2" data-status="active">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <p>
@@ -15,8 +18,7 @@ require_once('template_menu.php');
       <h2>Sécurité garantie</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
-    <?php
-      require('template_nav.php');
-    ?>
-    </div>
 </article>
+</main>
+</body>
+</html>
