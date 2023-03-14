@@ -6,22 +6,19 @@ require_once('template_header.php');
 require_once('template_menu.php');
 ?>
 <main>
-  <article data-index="0" data-status="active">
+
+<article data-index="1" data-status="inactive">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
-      <p>
-        <a class="source-link" href="" target="_blank"></a>
-        <a class="yt-link" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        Découvrez notre équipe de développeurs et de designers qui travaillent pour vous.
-      </p>
+      <?php 
+        require_once('template_articles.php');
+      ?>
     </div>
     <div class="article-title-section article-section">
-      <h2>Accueil</h2>
+        <h2>Développement d'applications mobile</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
 </article>
 </main>
-
 </body>
-
 </html>
