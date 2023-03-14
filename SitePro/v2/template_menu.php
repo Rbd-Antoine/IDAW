@@ -1,3 +1,24 @@
+<?php
+    function renderMenuToHTML($currentPageId) {
+        $mymenu = array(
+            // idPage titre
+            'index' => array( 'Accueil' ),
+            'securite' => array( 'Securite' ),
+            'dev' => array('Dev'),
+            'reseau' => array('Reseau'),
+            );
+
+        foreach($mymenu as $pageId => $pageParameters) {
+            $pageTitre = $pageParameters[0];
+            $class = '';
+            if ($currentPageId === $pageId) {
+                $class = ' class="active"';
+            }
+            echo '<a href="' . $pageId . '.php"' . $class . '>' . $pageTitre . '</a>';
+        }
+    }
+?>
+
 <nav data-toggled="false" data-transitionable="false">
   <div id="nav-logo-section" class="nav-section">
     <a href="index.php">
@@ -11,7 +32,6 @@
   </div>
   <div id="nav-mobile-section">
     <div id="nav-link-section" class="nav-section">
-      <a href="about.php">ABOUT</a>
       <a href="securite.php">SECURITE</a>
       <a href="dev.php">DEV</a>
       <a href="reseau.php">RESEAU</a>
