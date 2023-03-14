@@ -3,9 +3,8 @@
         $mymenu = array(
             // idPage titre
             'index' => array( 'Accueil' ),
-            'securite' => array( 'Securite' ),
-            'dev' => array('Dev'),
-            'reseau' => array('Reseau'),
+            'cv' => array( 'Cv' ),
+            'projets' => array('Mes Projets'),
             );
 
         foreach($mymenu as $pageId => $pageParameters) {
@@ -32,9 +31,8 @@
   </div>
   <div id="nav-mobile-section">
     <div id="nav-link-section" class="nav-section">
-      <a href="securite.php">SECURITE</a>
-      <a href="dev.php">DEV</a>
-      <a href="reseau.php">RESEAU</a>
+      <a href="projets.php">MES PROJETS</a>
+      <a href="cv.php">CV</a>
     </div>
     <div id="nav-social-section" class="nav-section">
       <a href="#">

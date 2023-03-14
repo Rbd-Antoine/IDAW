@@ -3,10 +3,9 @@
         $mymenu = array(
             // idPage titre
             'index' => array( 'Accueil' ),
-            'securite' => array( 'Securite' ),
-            'dev' => array('Dev'),
-            'reseau' => array('Reseau'),
-            );
+            'cv' => array( 'Cv' ),
+            'projets' => array('Mes Projets'),
+        );
 
         foreach($mymenu as $pageId => $pageParameters) {
             $pageTitre = $pageParameters[0];
@@ -26,15 +25,15 @@
     </a>
     <div id="nom-du-site" class="nom-site">
       <a>
-        NEBULA 
+        RIBEAUD ANTOINE 
       </a>
     </div>
   </div>
   <div id="nav-mobile-section">
     <div id="nav-link-section" class="nav-section">
-      <a href="securite.php">SECURITE</a>
-      <a href="dev.php">DEV</a>
-      <a href="reseau.php">RESEAU</a>
+      <a href="projets.php">MES PROJETS</a>
+      <a href="cv.php">CV</a>
+      <a href="index.php">ACCUEIL</a>
     </div>
     <div id="nav-social-section" class="nav-section">
       <a href="#">
@@ -49,7 +48,7 @@
     </div>
     <div id="nav-contact-section" class="nav-section">
       <div class="open-btn">
-        <button class="open-button" onclick="openForm()"><strong>Contactez-nous</strong></button>
+        <button class="open-button" onclick="openForm()"><strong>Contactez-moi</strong></button>
       </div>
       <div class="login-popup">
         <div class="form-popup" id="popupForm">
