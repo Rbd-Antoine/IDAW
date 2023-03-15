@@ -3,18 +3,19 @@ require_once('template_header.php');
 ?>
 <body>
 <main>
-<article data-status="active">    
+
+<article data-index="1">    
     <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
-      <p>
-        Bienvenue sur mon site !
-      </p>
+      <?php 
+        require_once('template_articles.php');
+      ?>
     </div>
     <div class="article-title-section article-section">
-      <h2>Accueil</h2>
+        <h2>Here is my resume :</h2>
       <i class="fa-solid fa-plus-large"></i>
-      <a href="index.php?page=accueil&lang=en">Anglais</a>
     </div>
-  </article>
+</article>
 </main>
 </body>
+</html>
