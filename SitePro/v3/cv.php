@@ -2,9 +2,6 @@
 require_once('template_header.php');
 ?>
 <body>
-<?php
-require_once('template_menu.php');
-?>
 <main>
 
 <article data-index="1">    
@@ -15,7 +12,7 @@ require_once('template_menu.php');
       ?>
     </div>
     <div class="article-title-section article-section">
-        <h2>Développement d'applications mobile</h2>
+        <h2>CV</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
 </article>
