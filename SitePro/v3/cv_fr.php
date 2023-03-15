@@ -5,7 +5,6 @@ require_once('template_header.php');
 <main>
 
 <article data-index="1">    
-    <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <?php 
         require_once('template_articles.php');
@@ -15,6 +14,7 @@ require_once('template_header.php');
         <h2>CV</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
+    <img src=./images/cv.jpg alt="cv" ></img>
 </article>
 </main>
 </body>

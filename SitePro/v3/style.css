@@ -176,10 +176,6 @@ main > article > .article-nav-section {
   border-top: 1px solid var(--border-color);
 }
 
-main > article:first-child > .article-image-section {
-  background-image: url("https://images.unsplash.com/photo-1638401985704-e94238707676?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1233&q=80");
-}
-
 main > article > .article-image-section {
   background-position: center;
   background-size: cover;

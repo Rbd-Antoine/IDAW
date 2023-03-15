@@ -5,11 +5,9 @@ require_once('template_header.php');
 <main>
 
 <article data-index="1">    
-    <div class="article-image-section article-section"></div>
+
     <div class="article-description-section article-section">
-      <?php 
-        require_once('template_articles.php');
-      ?>
+      <img  src="./images/resumep1.jpg">  </img>
     </div>
     <div class="article-title-section article-section">
         <h2>Here is my resume :</h2>
