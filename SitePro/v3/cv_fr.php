@@ -14,7 +14,7 @@ require_once('template_header.php');
         <h2>CV</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
-    <img src=./images/cv.jpg alt="cv" ></img>
+    <div class="photo-resume">    
 </article>
 </main>
 </body>

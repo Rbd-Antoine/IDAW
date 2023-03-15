@@ -5,7 +5,6 @@ require_once('template_header.php');
 
 <main>
   <article data-index="0" data-status="active">
-    <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <p>
         <a class="source-link" href="" target="_blank"></a>
