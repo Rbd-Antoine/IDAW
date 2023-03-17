@@ -4,7 +4,7 @@ require_once('template_header.php');
 <body>
 <main>
 <article data-status="active">    
-    <div class="article-image-section article-section"></div>
+  <div class="article-image-section article-section"></div>
     <div class="article-description-section article-section">
       <p>
         Bienvenue sur mon site !

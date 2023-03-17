@@ -10,8 +10,8 @@
       </p>
     </div>
     <div class="article-title-section article-section">
-      <h2>Contact</h2>
-      <\br>
+      <h2>Contact  </h2>
+    
       <i class="fa-solid fa-plus-large"></i>
       <div id="nav-contact-section" class="nav-section">
               <div class="open-btn">

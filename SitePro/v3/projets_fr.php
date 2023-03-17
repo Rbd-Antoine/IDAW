@@ -4,7 +4,7 @@ require_once('template_header.php');
 <body>
 
 <main>
-  <article data-index="0" data-status="active">
+  <article data-index="1">
     <div class="article-description-section article-section">
       <p>
         <a class="source-link" href="" target="_blank"></a>
@@ -16,7 +16,7 @@ require_once('template_header.php');
       <h2>PROJETS</h2>
       <i class="fa-solid fa-plus-large"></i>
     </div>
-</article>
+</article>  
 </main>
 
 </body>
