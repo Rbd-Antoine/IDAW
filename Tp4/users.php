@@ -12,10 +12,16 @@
     catch (PDOException $erreur) {
         myLog('Erreur : '.$erreur->getMessage());
     }
+
+    //delete all tables from database dbtest
+    $request = $pdo->prepare("drop table if exists users");
+    $request->execute();
+
+    $sql = file_get_contents('users.sql');
+    $request = $pdo->exec($sql);
+
+    // retrieve data from database using fetch(PDO::FETCH_OBJ)
     $request = $pdo->prepare("select * from users");
-
-    // retrieve data from database using fetch(PDO::FETCH_OBJ) and
-
     $request->execute();
     $users = $request->fetchAll(PDO::FETCH_OBJ);
 
