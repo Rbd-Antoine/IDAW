@@ -1,7 +1,7 @@
-**Documentation du code**
+#**Documentation du code**
 Ce fichier PHP permet de manipuler des données d'utilisateurs en utilisant une base de données MySQL. Il contient deux fonctions : getAllUsers() et createUser().
 
-**Configuration de la base de données**
+#Configuration de la base de données
 La configuration de la base de données est stockée dans un fichier config.php. Les paramètres de connexion à la base de données, tels que le nom d'utilisateur, le mot de passe et le nom de la base de données, sont stockés en tant que constantes et peuvent être modifiés dans le fichier config.php.
 
 **Fonction getAllUsers()**
