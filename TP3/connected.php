@@ -13,12 +13,11 @@
         // si login existe et password correspond
         if( array_key_exists($tryLogin,$users) && $users[$tryLogin]==$tryPwd ) {
             $successfullyLogged = true;
+            session_start();
             $login = $tryLogin;
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $login;
             // Rediriger l'utilisateur vers la page d'accueil
-            header('Location: index.php');
-
+            header("Location: index.php");
         } 
         else
             $errorText = "Erreur de login/password";
