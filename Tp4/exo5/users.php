@@ -1,34 +1,22 @@
 <?php
-    require_once('config.php');
-    $connectionString = "mysql:host=". _MYSQL_HOST;
-    if(defined('_MYSQL_PORT'))
-        $connectionString .= ";port=". _MYSQL_PORT;
-        $connectionString .= ";dbname=" . _MYSQL_DBNAME;
-        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' );
-        try {
-            $pdo = new PDO($connectionString,_MYSQL_USER,_MYSQL_PASSWORD,$options);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $erreur) {
-        myLog('Erreur : '.$erreur->getMessage());
-    }
-?>
-<?php
+    require_once('connection.php');
+    require_once('api.php');
+
+
     function getAllUsers() {
+        global $pdo;
         // Récupération des utilisateurs
-        $stmt = $pdo->query('SELECT * FROM users');
-        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $request = $pdo->prepare('select * from users');
+        $request->execute();
+        $users = $request->fetchAll(PDO::FETCH_OBJ);
         
         // Conversion en JSON
         $json = json_encode($users);
 
-        // Envoi de la réponse HTTP
+        // HTPP response of 200 OK
         header('HTTP/1.1 200 OK');
+        header('Content-Type: application/json');
         echo $json;
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-        getAllUsers();
     }
 
     function createUser() {
@@ -51,15 +39,28 @@
         
         // Envoi de la réponse HTTP
         header('HTTP/1.1 201 Created');
-        header('Location: /users.php/' . $id)
-        header('Content-Type: application/json')
+        header('Location: /users.php/' . $id);
+        header('Content-Type: application/json');
         $user = ['id' => $id, 'name' => $name, 'email' => $email];
         $json = json_encode($user);
         echo $json;
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        createUser();
+    function deleteUser() {
+        // Vérification des paramètres
+        $id = $_GET['id'];
+        if (empty($id)) {
+            header('HTTP/1.1 400 Bad Request');
+            echo 'Missing parameter';
+            return;
+        }
+        // Suppression de l'utilisateur de la base de données
+        $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
+        $stmt -> execute([$id]);
+        
+        // Envoi de la réponse HTTP
+        header('HTTP/1.1 204 No Content');
     }
 
+    $pdo = null;
 ?>
