@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <title>tabletest</title>
 </head>
+
 <body>
     <div class="container">
         <h1>Tableau de bord</h1>
@@ -38,20 +39,20 @@
         <div class="form-group row">
             <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
             <div class="col-sm-3">
-                <input type="text" required= "true" class="form-control" id="inputNom">
+                <input type="text" required="true" class="form-control" id="inputNom">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-3">
-                <input type="email" required= "true" class="form-control" id="inputEmail">
+                <input type="email" required="true" class="form-control" id="inputEmail">
             </div>
-        <div class="form-group row">
-            <span class="col-sm-2"></span>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
+            <div class="form-group row">
+                <span class="col-sm-2"></span>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                </div>
             </div>
-        </div>
     </form>
     <script>
         $(document).ready(function () {
@@ -71,8 +72,8 @@
                         let tr = $("<tr></tr>");
                         tr.append("<td>" + personne.nom + "</td>");
                         tr.append("<td>" + personne.email + "</td>");
-                        tr.append("<td><button class='btn btn-danger' onclick='deletePersonne(" + personne.id + ")'>Delete</button></td>");
-                        tr.append("<td><button class='btn btn-warning' onclick='updatePersonne(" + personne.id+")'>Modifier</button></td>");
+                        tr.append("<td><button class='btn btn-danger' onclick='deletePersonne(" + personne.id + ")'>Supprimer</button></td>");
+                        tr.append("<td><button class='btn btn-warning' onclick='modifyPersonne(" + personne.id + ")'>Modifier</button></td>");
                         tableBody.append(tr);
                     }
                 },
@@ -81,14 +82,73 @@
                 }
             });
         }
-        function updatePersonne(id) {
-            getOnePersonne(id);
-            $("#addPersonForm").attr("onsubmit", "onUpdateSubmit(" + id + ");");
+        function getOnePersonne(id, callback) {
+            $.ajax({
+                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+        function modifyPersonne(id) {
+            //create a form to modify the personne
+            let form = $("<form></form>");
+            //add an onsubmit event to the form
+            form.attr("onsubmit", "onFormSubmit();");
+            //get the personne data
+            let personne;
+            getOnePersonne(id, function (data) {
+                personne = data;
+                //fill the form with the personne data
+                $("#inputNom").val(personne.nom);
+                $("#inputEmail").val(personne.email);
+                //add the onsubmit event to the form
+                $("#addPersonForm").attr("onsubmit", "onFormUpdate(" + id + ");");
+                //add the form to the page
+                $("#tableBody").append(form);
+                //get the new data from the form    
+                setTimeout(function () {
+                    let nom = $("#inputNom").val();
+                    let email = $("#inputEmail").val();
+                    let newPersonne = {
+                        nom: nom,
+                        email: email,
+                    };
+                    //convert the new data to JSON
+                    newPersonne = JSON.stringify(newPersonne);
+                    //update the personne
+                    updatePersonne(id, newPersonne.nom, newPersonne.email);
+                }, 1000); //wait for
+            });
+        }
+        function updatePersonne(id, nom, email) {
+            $.ajax({
+                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                type: "PUT",
+                data: {
+                    id: id,
+                    nom: nom,
+                    email: email,
+                },
+                success: function (data) {
+                    console.log(data);
+                    // refresh the table
+                    getAllPersonnes();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         }
         function onFormSubmit() {
             // prevent the form to be sent to the server
             event.preventDefault();
-            let nom = $("#inputNom").val();   
+            let nom = $("#inputNom").val();
             let email = $("#inputEmail").val();;
             let personne = {
                 nom: nom,
@@ -131,21 +191,7 @@
                 }
             });
         }
-        function getOnePersonne(id) {
-            $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/" + id,
-                type: "GET",
-                success: function (data) {
-                    console.log(data);
-                    let personne = data;
-                    $("#inputNom").val(personne.nom);
-                    $("#inputEmail").val(personne.email);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });            
-        }
+
     </script>
 </body>
 

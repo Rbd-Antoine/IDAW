@@ -34,8 +34,4 @@
         deleteUser( $params['id']);
     }
 
-    if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        updateUser( $params['id'], $params['nom'], $params['email']);
-    }
-
 ?>
