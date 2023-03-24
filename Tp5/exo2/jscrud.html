@@ -73,13 +73,39 @@
                         tr.append("<td>" + personne.nom + "</td>");
                         tr.append("<td>" + personne.email + "</td>");
                         tr.append("<td><button class='btn btn-danger' onclick='deletePersonne(" + personne.id + ")'>Supprimer</button></td>");
-                        tr.append("<td><button class='btn btn-warning' onclick='modifyPersonne(" + personne.id + ")'>Modifier</button></td>");
+                        tr.append("<td><button class='btn btn-warning' onclick='showModifyForm(" + personne.id + ")'>Modifier</button></td>");
                         tableBody.append(tr);
                     }
                 },
                 error: function (error) {
                     console.log(error);
                 }
+            });
+        }
+        function showModifyForm(id) {
+            //create a form to modify the personne
+            let form = $("<form></form>");
+            //add the input fields to the form
+            form.append("<div class='form-group row'><label for='inputNomModify' class='col-sm-2 col-form-label'>Nom*</label><div class='col-sm-3'><input type='text' required='true' class='form-control' id='inputNomModify'></div></div>");
+            form.append("<div class='form-group row'><label for='inputEmailModify' class='col-sm-2 col-form-label'>Email</label><div class='col-sm-3'><input type='email' required='true' class='form-control' id='inputEmailModify'></div></div>");
+            form.append("<div class='form-group row'><span class='col-sm-2'></span><div class='col-sm-2'><button type='submit' class='btn btn-primary form-control'>Submit</button></div></div>");
+            //add an onsubmit event to the form
+            form.on("submit", function (event) {
+                //prevent the default behavior of the form submission
+                event.preventDefault();
+                //get the new data from the form    
+                let nom = $("#inputNomModify").val();
+                let email = $("#inputEmailModify").val();
+                let newPersonne = {
+                    nom: nom,
+                    email: email,
+                };
+                //convert the new data to JSON
+                newPersonne = JSON.stringify(newPersonne);
+                //update the personne
+                updatePersonne(id, newPersonne);
+                // Afficher le formulaire de modification
+                $("#modifyForm").html(form);
             });
         }
         function getOnePersonne(id, callback) {
@@ -95,46 +121,22 @@
                 }
             });
         }
-        function modifyPersonne(id) {
-            //create a form to modify the personne
-            let form = $("<form></form>");
-            //add an onsubmit event to the form
-            form.attr("onsubmit", "onFormSubmit();");
-            //get the personne data
-            let personne;
-            getOnePersonne(id, function (data) {
-                personne = data;
-                //fill the form with the personne data
-                $("#inputNom").val(personne.nom);
-                $("#inputEmail").val(personne.email);
-                //add the onsubmit event to the form
-                $("#addPersonForm").attr("onsubmit", "onFormUpdate(" + id + ");");
-                //add the form to the page
-                $("#tableBody").append(form);
-                //get the new data from the form    
-                setTimeout(function () {
-                    let nom = $("#inputNom").val();
-                    let email = $("#inputEmail").val();
-                    let newPersonne = {
-                        nom: nom,
-                        email: email,
-                    };
-                    //convert the new data to JSON
-                    newPersonne = JSON.stringify(newPersonne);
-                    //update the personne
-                    updatePersonne(id, newPersonne.nom, newPersonne.email);
-                }, 1000); //wait for
-            });
-        }
-        function updatePersonne(id, nom, email) {
+        // function modifyPersonne(id, personne) {
+        //     //get the personne data
+        //     getOnePersonne(id, function (personne) {
+        //         //fill the form with the personne data
+        //         $("#inputNomModify").val(personne.nom);
+        //         $("#inputEmailModify").val(personne.email);
+        //         //add the form to the page
+        //         $("#tableBody").append(form);
+        //     });
+        // }
+        function updatePersonne(id, personne) {
             $.ajax({
                 url: "http://localhost/Tp4/exo5/api.php/" + id,
                 type: "PUT",
-                data: {
-                    id: id,
-                    nom: nom,
-                    email: email,
-                },
+                data: personne,
+                contentType: "application/json",
                 success: function (data) {
                     console.log(data);
                     // refresh the table
