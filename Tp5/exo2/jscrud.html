@@ -73,39 +73,13 @@
                         tr.append("<td>" + personne.nom + "</td>");
                         tr.append("<td>" + personne.email + "</td>");
                         tr.append("<td><button class='btn btn-danger' onclick='deletePersonne(" + personne.id + ")'>Supprimer</button></td>");
-                        tr.append("<td><button class='btn btn-warning' onclick='showModifyForm(" + personne.id + ")'>Modifier</button></td>");
+                        tr.append("<td><button class='btn btn-warning' onclick='modifyPersonne(" + personne.id + ")'>Modifier</button></td>");
                         tableBody.append(tr);
                     }
                 },
                 error: function (error) {
                     console.log(error);
                 }
-            });
-        }
-        function showModifyForm(id) {
-            //create a form to modify the personne
-            let form = $("<form></form>");
-            //add the input fields to the form
-            form.append("<div class='form-group row'><label for='inputNomModify' class='col-sm-2 col-form-label'>Nom*</label><div class='col-sm-3'><input type='text' required='true' class='form-control' id='inputNomModify'></div></div>");
-            form.append("<div class='form-group row'><label for='inputEmailModify' class='col-sm-2 col-form-label'>Email</label><div class='col-sm-3'><input type='email' required='true' class='form-control' id='inputEmailModify'></div></div>");
-            form.append("<div class='form-group row'><span class='col-sm-2'></span><div class='col-sm-2'><button type='submit' class='btn btn-primary form-control'>Submit</button></div></div>");
-            //add an onsubmit event to the form
-            form.on("submit", function (event) {
-                //prevent the default behavior of the form submission
-                event.preventDefault();
-                //get the new data from the form    
-                let nom = $("#inputNomModify").val();
-                let email = $("#inputEmailModify").val();
-                let newPersonne = {
-                    nom: nom,
-                    email: email,
-                };
-                //convert the new data to JSON
-                newPersonne = JSON.stringify(newPersonne);
-                //update the personne
-                updatePersonne(id, newPersonne);
-                // Afficher le formulaire de modification
-                $("#modifyForm").html(form);
             });
         }
         function getOnePersonne(id, callback) {
@@ -121,25 +95,57 @@
                 }
             });
         }
-        // function modifyPersonne(id, personne) {
-        //     //get the personne data
-        //     getOnePersonne(id, function (personne) {
-        //         //fill the form with the personne data
-        //         $("#inputNomModify").val(personne.nom);
-        //         $("#inputEmailModify").val(personne.email);
-        //         //add the form to the page
-        //         $("#tableBody").append(form);
-        //     });
-        // }
+        function modifyPersonne(id) {
+            // Récupération de la personne à modifier
+            $.ajax({
+                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                type: "GET",
+                success: function (personne) {
+                    // Création du formulaire
+                    let form = $("<form></form>");
+
+                    // Remplacement de la ligne de la table par le formulaire
+                    let tr = $("<tr></tr>");
+                    tr.append("<td><input type='text' name='nom' value='" + personne.nom + "'></td>");
+                    tr.append("<td><input type='text' name='email' value='" + personne.email + "'></td>");
+                    tr.append("<td></td>");
+                    tr.find("td:last").append(form);
+                    tr.insertBefore("#tableBody tr:last");
+                    // Création du bouton de validation
+                    let button = $("<button type='submit' class='btn btn-warning'>Modifier</button>");
+                    form.append(button);
+                    // Création du bouton d'annulation
+                    let buttonCancel = $("<button type='button' class='btn btn-danger'>Annuler</button>");
+                    buttonCancel.click(function () {
+                        tr.remove();
+                    });
+                    form.append(buttonCancel);
+                    // Ajout de l'évènement de soumission du formulaire
+                    form.submit(function (event) {
+                        event.preventDefault();
+                        let nom = form.find("input[name='nom']").val();
+                        let email = form.find("input[name='email']").val();
+                        let personne = {
+                            nom: nom,
+                            email: email,
+                        };
+                        personne = JSON.stringify(personne);
+                        updatePersonne(id, personne);
+                        tr.remove();
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
         function updatePersonne(id, personne) {
             $.ajax({
                 url: "http://localhost/Tp4/exo5/api.php/" + id,
                 type: "PUT",
-                data: personne,
                 contentType: "application/json",
+                data: personne,
                 success: function (data) {
-                    console.log(data);
-                    // refresh the table
                     getAllPersonnes();
                 },
                 error: function (error) {
