@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <title>tabletest</title>
+    <script src="config.js"></script>
 </head>
 
 <body>
@@ -54,17 +55,19 @@
                 </div>
             </div>
     </form>
+    
     <script>
+        let personnes = [];
         $(document).ready(function () {
             getAllPersonnes();
         });
         function getAllPersonnes() {
             $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/",
+                url: API_BASE_URL,
                 type: "GET",
                 success: function (data) {
                     console.log(data);
-                    let personnes = data;
+                    personnes = data;
                     let tableBody = $("#tableBody");
                     tableBody.empty();
                     for (let i = 0; i < personnes.length; i++) {
@@ -84,7 +87,7 @@
         }
         function getOnePersonne(id, callback) {
             $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                url: API_BASE_URL + id,
                 type: "GET",
                 success: function (data) {
                     console.log(data);
@@ -138,7 +141,7 @@
         }
         function updatePersonne(id, personne) {
             $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                url: API_BASE_URL + id,
                 type: "PUT",
                 contentType: "application/json",
                 data: personne,
@@ -165,7 +168,7 @@
         }
         function addPersonne(personne) {
             $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/",
+                url: API_BASE_URL,
                 type: "POST",
                 data: personne,
                 contentType: "application/json",
@@ -184,12 +187,12 @@
         }
         function deletePersonne(id) {
             $.ajax({
-                url: "http://localhost/Tp4/exo5/api.php/" + id,
+                url: API_BASE_URL + id,
                 type: "DELETE",
                 success: function (data) {
                     console.log(data);
                     // refresh the table
-                    getAllPersonnes();
+                    // getAllPersonnes();
                 },
                 error: function (error) {
                     console.log(error);
